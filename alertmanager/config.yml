@@ -1,0 +1,21 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'aliakseyeu@gmail.com'
+
+route:
+  receiver: 'slack-notifications'
+  group_by: [alertname]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+
+receivers:
+- name: 'slack-notifications'
+  slack_configs:
+  - api_url: 'https://hooks.slack.com/services/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'
+    channel: '#alerts'
+    username: 'Alertmanager'
+    text: '{{ .CommonAnnotations.summary }}'
+
+templates:
+- '*.tmpl'
