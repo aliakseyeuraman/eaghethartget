@@ -47,3 +47,5 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
+volumes:
+  prometheus_data:
