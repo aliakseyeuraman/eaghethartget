@@ -7,7 +7,7 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - api_url: 'https://hooks.slack.com/services/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'
+  - api_url: 'https://hooks.slack.com/services/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'
     channel: '#алерты'
     send_resolved: true
     username: 'Alertmanager'

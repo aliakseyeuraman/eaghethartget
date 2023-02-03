@@ -1,11 +1,21 @@
 groups:
-- name: example
+- name: for master
   rules:
   - alert: HighCPUUsage
-    expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{job="node",mode="idle"}[1m])) * 100) > 60
+    expr: 100 - (avg by (name) (rate(node_cpu_seconds_total{job="nodes",mode="idle",name="ec2_master"}[1m])) * 100) > 60
     for: 1m
     annotations:
-      summary: "Instance {{ $labels.instance }} has high CPU usage"
+      summary: "Instance {{ $labels.name }} has high CPU usage"
       description: "Current CPU usage: {{ $value }}%."
+    labels:
+      severity: critical
+- name: for slave
+  rules:
+  - alert: HighRAMUsage
+    expr: node_memory_MemAvailable_bytes{name="ec2_slave"} / node_memory_MemTotal_bytes{name="ec2_slave"} * 100 < 10
+    for: 1m
+    annotations:
+      summary: "Instance {{ $labels.name }} has high RAM usage."
+      description: "Current RAM usage: {{ $value }}%."
     labels:
       severity: critical
