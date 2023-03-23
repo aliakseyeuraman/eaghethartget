@@ -5,16 +5,16 @@
   tasks:
        
   - name: copy my structure
-    copy: src=db_structure.py dest=/home/ubuntu/MySQLMigration
+    copy: src=db_structure.py dest=/home/ubuntu//home/ubuntu/MySQLTest
     tags:
       - copyfile
 
   - name: Run skript for make changes
     ansible.builtin.shell:
       cmd: alembic revision --autogenerate
-      chdir: /home/ubuntu/MySQLMigration
+      chdir: /home/ubuntu/MySQLTest
 
   - name: Run skript for deploy changes
     ansible.builtin.shell:
       cmd: alembic upgrade head
-      chdir: /home/ubuntu/MySQLMigration
+      chdir: /home/ubuntu/MySQLTest
