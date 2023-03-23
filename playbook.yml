@@ -5,7 +5,7 @@
   tasks:
        
   - name: copy my structure
-    copy: src=db_structure.py dest=/home/ubuntu//home/ubuntu/MySQLTest
+    copy: src=db_structure.py dest=/home/ubuntu/MySQLTest
     tags:
       - copyfile
 
