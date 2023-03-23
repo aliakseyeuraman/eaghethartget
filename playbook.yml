@@ -1,0 +1,20 @@
+---
+- name: deploy structure
+  hosts: servers_ubuntu
+  become: true
+  tasks:
+       
+  - name: copy my structure
+    copy: src=db_structure.py dest=/home/ubuntu/MySQLMigration
+    tags:
+      - copyfile
+
+  - name: Run skript for make changes
+    ansible.builtin.shell:
+      cmd: alembic revision --autogenerate -m ''
+      chdir: /home/ubuntu/MySQLMigration
+
+  - name: Run skript for deploy changes
+    ansible.builtin.shell:
+      cmd: alembic upgrade head
+      chdir: /home/ubuntu/MySQLMigration
