@@ -1,2 +1,2 @@
 [servers_ubuntu]
-Ubuntu ansible_host=13.53.138.241 ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/.ssh/OpsStockholm.pem
+Ubuntu ansible_host=13.53.138.241 ansible_user=ubuntu ansible_ssh_private_key_file=/var/jenkins_home/OpsStockholm.pem
